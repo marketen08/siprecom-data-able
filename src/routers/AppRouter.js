@@ -23,6 +23,8 @@ import SamplePageMg from '../views/extra/SamplePageMg';
 
 
 import AdminLayout from '../layouts/AdminLayout';
+import ElementosTabla from '../components/Elementos/ElementosTabla';
+import BasicButton from '../views/ui-elements/basic/BasicButton';
 
 export const AppRouter = () => {
 
@@ -90,6 +92,27 @@ export const AppRouter = () => {
                         } 
                     />
 
+                    <Route path="/elementos" element={ 
+                        <PrivateRoute isAuthenticated= { !!uid }>
+                            <AdminLayout>
+                                <ElementosTabla />
+                            </AdminLayout>
+                        </PrivateRoute>
+                        } 
+                    />
+
+                    <Route path="/basic/button" element={ 
+                        <PrivateRoute isAuthenticated= { !!uid }>
+                            <AdminLayout>
+                                <BasicButton />
+                            </AdminLayout>
+                        </PrivateRoute>
+                        } 
+                    />
+
+
+                    {/* <Navigate to="/" /> */}
+
                     <Route element={ 
                         <PrivateRoute isAuthenticated= { !!uid }>
                             <DashDefault />
@@ -97,7 +120,6 @@ export const AppRouter = () => {
                         } 
                     />
 
-                    {/* <Navigate to="/" /> */}
 
                 </Routes>
             </div>

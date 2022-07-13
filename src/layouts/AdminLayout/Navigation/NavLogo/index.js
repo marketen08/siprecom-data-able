@@ -21,9 +21,9 @@ const NavLogo = () => {
           <div className="b-bg">
             <i className="feather icon-trending-up" />
           </div>
-          <span className="b-title">Datta Able</span>
+          <span className="b-title">Siprecom</span>
         </Link>
-        <Link to="#" className={toggleClass.join(' ')} id="mobile-collapse" onClick={() => dispatch({ type: actionType.COLLAPSE_MENU })}>
+        <Link to="#" className={ toggleClass.join(' ') } id="mobile-collapse" onClick={() => dispatch({ type: actionType.COLLAPSE_MENU })}>
           <span />
         </Link>
       </div>

@@ -12,6 +12,12 @@ const menuItems = {
           type: 'item',
           url: '/app/dashboard/default',
           icon: 'feather icon-home',
+        },{
+          id: 'elementos',
+          title: 'Elementos',
+          type: 'item',
+          url: '/elementos',
+          icon: 'feather icon-server',
         }
       ]
     },
