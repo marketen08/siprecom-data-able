@@ -5,24 +5,26 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import ChatList from './ChatList';
 import { ConfigContext } from '../../../../contexts/ConfigContext';
-import useAuth from '../../../../hooks/useAuth';
 
 import avatar1 from '../../../../assets/images/user/avatar-1.jpg';
 import avatar2 from '../../../../assets/images/user/avatar-2.jpg';
 import avatar3 from '../../../../assets/images/user/avatar-3.jpg';
 import avatar4 from '../../../../assets/images/user/avatar-4.jpg';
+import { startLogout } from '../../../../actions/auth';
+import { useDispatch } from 'react-redux';
 
 const NavRight = () => {
   const configContext = useContext(ConfigContext);
-  const { logout } = useAuth();
   const { rtlLayout } = configContext.state;
 
   const [listOpen, setListOpen] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleLogout = async () => {
     try {
       //handleClose();
-      await logout();
+      await dispatch( startLogout() );
     } catch (err) {
       console.error(err);
     }
@@ -136,36 +138,36 @@ const NavRight = () => {
             </Dropdown.Toggle>
             <Dropdown.Menu alignRight className="profile-notification">
               <div className="pro-head">
-                <img src={avatar1} className="img-radius" alt="User Profile" />
-                <span>John Doe</span>
+                <img src={avatar2} className="img-radius" alt="User Profile" />
+                <span>Marcos Gimenez</span>
                 <Link to="#" className="dud-logout" title="Logout">
-                  <i className="feather icon-log-out" />
+                  <i className="feather icon-log-out" />a
                 </Link>
               </div>
               <ListGroup as="ul" bsPrefix=" " variant="flush" className="pro-body">
                 <ListGroup.Item as="li" bsPrefix=" ">
                   <Link to="#" className="dropdown-item">
-                    <i className="feather icon-settings" /> Settings
+                    <i className="feather icon-settings" /> Opciones
                   </Link>
                 </ListGroup.Item>
                 <ListGroup.Item as="li" bsPrefix=" ">
                   <Link to="#" className="dropdown-item">
-                    <i className="feather icon-user" /> Profile
+                    <i className="feather icon-user" /> Perfil
                   </Link>
                 </ListGroup.Item>
                 <ListGroup.Item as="li" bsPrefix=" ">
                   <Link to="#" className="dropdown-item">
-                    <i className="feather icon-mail" /> My Messages
+                    <i className="feather icon-mail" /> Mis mensajes
                   </Link>
                 </ListGroup.Item>
                 <ListGroup.Item as="li" bsPrefix=" ">
                   <Link to="#" className="dropdown-item">
-                    <i className="feather icon-lock" /> Lock Screen
+                    <i className="feather icon-lock" /> Lock Screen (no funciona)
                   </Link>
                 </ListGroup.Item>
                 <ListGroup.Item as="li" bsPrefix=" ">
                   <Link to="#" className="dropdown-item" onClick={handleLogout}>
-                    <i className="feather icon-log-out" /> Logout
+                    <i className="feather icon-log-out" /> Salir
                   </Link>
                 </ListGroup.Item>
               </ListGroup>

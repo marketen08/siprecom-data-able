@@ -2,6 +2,8 @@ import React from 'react'
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { elementoSetActive, elementoStartDeleted } from '../../actions/elementos';
+import { Dropdown, ListGroup } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 moment.locale('es');
 
 // const formatoFecha = 'DD/MM/yyyy'
@@ -66,16 +68,31 @@ export const ElementoItem = ( elemento ) => {
                         </span>
                     </td>
 
-                    <td className="text-right">
-                        <div className="dropdown pointer">
-                            <div className="" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i className="fa-solid fa-ellipsis"></i>
-                            </div>
-                            <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><button className="dropdown-item" onClick={ handleSeleccionar }>Ver</button></li>
-                                <li><button className="dropdown-item" onClick={ handleEliminar }>Eliminar</button></li>
-                            </ul>
-                        </div>
+
+                    <td>
+                    <ListGroup as="ul" bsPrefix=" " className="navbar-nav mr-auto">
+                        <ListGroup.Item as="li" bsPrefix=" " >
+                            <Dropdown alignRight={true}>
+                                <Dropdown.Toggle variant={'button'} id="dropdown-basic">
+                                    Cambiar por tacho de basura y clic en cualquier lugar de la row
+                                </Dropdown.Toggle>
+                                <ul>
+                                <Dropdown.Menu>
+                                    <li>
+                                    <Link to="#" className="dropdown-item" onClick={ handleSeleccionar } >
+                                        Ver
+                                    </Link>
+                                    </li>
+                                    <li>
+                                    <Link to="#" className="dropdown-item" onClick={ handleEliminar } >
+                                        Eliminar
+                                    </Link>
+                                    </li>
+                                </Dropdown.Menu>
+                                </ul>
+                            </Dropdown>
+                            </ListGroup.Item>
+                    </ListGroup>
                     </td>
               </tr>
                 
