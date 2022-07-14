@@ -1,14 +1,15 @@
 import React from 'react';
-import { Card, Button, Alert } from 'react-bootstrap';
-import { NavLink, Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 import Breadcrumb from '../../../layouts/AdminLayout/Breadcrumb';
 
-import { CopyToClipboard } from 'react-copy-to-clipboard';
-
-import FirebaseLogin from './FirebaseLogin';
+import LoginApp from './LoginApp';
 
 const Signin1 = () => {
+
+  
+
   return (
     <React.Fragment>
       <Breadcrumb />
@@ -25,36 +26,21 @@ const Signin1 = () => {
               <div className="mb-4">
                 <i className="feather icon-unlock auth-icon" />
               </div>
-              <FirebaseLogin />
+              
+              <LoginApp />
               <p className="mb-2 text-muted">
-                Forgot password?{' '}
+                Olvidaste la contraseña?{' '}
                 <NavLink to="/auth/reset-password-1" className="f-w-400">
-                  Reset
+                  Restablecer
                 </NavLink>
               </p>
               <p className="mb-0 text-muted">
-                Don’t have an account?{' '}
+                No tenes una cuenta?{' '}
                 <NavLink to="/auth/signup-1" className="f-w-400">
-                  Signup
+                  Registrate
                 </NavLink>
               </p>
-              <Alert variant="primary" className="text-left mt-3">
-                Username:
-                <CopyToClipboard text="demo@gmail.com">
-                  <Button variant="outline-primary" as={Link} to="#" className="badge mx-2 mb-2" size="sm">
-                    {' '}
-                    <i className="fa fa-user mr-1" /> demo@gmail.com{' '}
-                  </Button>
-                </CopyToClipboard>
-                <br />
-                Password:
-                <CopyToClipboard text="123456">
-                  <Button variant="outline-primary" as={Link} to="#" className="badge mx-2" size="sm">
-                    {' '}
-                    <i className="fa fa-lock mr-1" /> 123456{' '}
-                  </Button>
-                </CopyToClipboard>
-              </Alert>
+              
             </Card.Body>
           </Card>
         </div>
