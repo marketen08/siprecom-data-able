@@ -9,6 +9,16 @@ export const types = {
     authStartRegister: '[auth] Start Register',
     authStartTokenRenew: '[auth] Start Token Renew',
     authLogout: '[auth] Logout',
+    authUsuariosLoaded: '[auth] Usuarios Loaded',
+
+    categoriaSetActive: '[categoria] Set active',
+    categoriaLogout: '[categoria] Logout event',
+    categoriaStartAddNew: '[categoria] Start Add New',
+    categoriaAddNew: '[categoria] Add new',
+    categoriaClearActive: '[categoria] Clear active',
+    categoriaUpdated: '[categoria] Updated',
+    categoriaDeleted: '[categoria] Deleted',
+    categoriaLoaded: '[categoria] Loaded',
 
     clienteSetActive: '[cliente] Set active',
     clienteLogout: '[cliente] Logout event',
@@ -45,6 +55,15 @@ export const types = {
     sistemaUpdated: '[sistema] Updated',
     sistemaDeleted: '[sistema] Deleted',
     sistemaLoaded: '[sistema] Loaded',
+
+    pendienteSetActive: '[pendiente] Set active',
+    pendienteLogout: '[pendiente] Logout event',
+    pendienteStartAddNew: '[pendiente] Start Add New',
+    pendienteAddNew: '[pendiente] Add new',
+    pendienteClearActive: '[pendiente] Clear active',
+    pendienteUpdated: '[pendiente] Updated',
+    pendienteDeleted: '[pendiente] Deleted',
+    pendienteLoaded: '[pendiente] Loaded',
 
     proyectoSetActive: '[proyecto] Set active',
     proyectoLogout: '[proyecto] Logout event',

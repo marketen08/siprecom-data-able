@@ -97,3 +97,27 @@ export const startLogout = () => {
 }
 
 const logout = () => ({ type: types.authLogout })
+
+
+export const usuariosStartLoading = ( buscar = '', desde = '', limite = '') => {
+    return async (dispatch) => {
+
+        try {
+            
+            const resp = await fecthConToken(`usuarios?buscar=${ buscar }&desde=${desde}&limite=${limite}`);
+            const body = await resp.json();
+
+            const usuarios = ( body.usuarios );
+
+            dispatch( usuariosLoaded( usuarios ));
+
+        } catch (error) {
+            console.log(error);
+        }
+    }
+}
+
+const usuariosLoaded = ( usuarios ) => ({
+    type: types.authUsuariosLoaded,
+    payload: usuarios
+});

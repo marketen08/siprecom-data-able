@@ -1,23 +1,25 @@
 import React from 'react';
 import { ListGroup, Dropdown, Row, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-
 
 import SelectReact from 'react-select'
 
 const IcoFiltro = () => {
     
-  const getStyle = {
-    control: (provided, state) => ({
-        ...provided,
-        cursor: 'pointer',
-    }),
-    option: (provided, state) => ({
-        ...provided,
-        cursor: 'pointer',
-    })
+    const getStyle = {
+        control: (provided, state) => ({
+            ...provided,
+            cursor: 'pointer',
+        }),
+        option: (provided, state) => ({
+            ...provided,
+            cursor: 'pointer',
+        })
 
-};
+        
+    };
+
+    const classNameMenu = 'dropdown-item bg-transparent text-dark'
+
 
   return (
     <>
@@ -26,10 +28,10 @@ const IcoFiltro = () => {
                 <i className="icon feather icon-filter" />
             </Dropdown.Toggle>
             <Dropdown.Menu alignRight className="profile-notification">
-            <ListGroup as="ul" variant="flush" className="pro-body">
-                <Link to="#" className="dropdown-item">
+            <ListGroup >
+                <span className={classNameMenu}>
                     <Row>
-                        <Col className='p-2'>
+                        <Col>
                             Especialidad
                         </Col>
                         <Col>
@@ -39,27 +41,30 @@ const IcoFiltro = () => {
                             />
                         </Col>
                     </Row>
-                </Link>
-                <Link to="#" className="dropdown-item">
+                </span>
+                <span className={classNameMenu}>
                     <Row>
-                        <Col className='p-2'>
+                        <Col>
                             Tipo de elemento
                         </Col>
                         <Col>
-                            <SelectReact placeholder='Tipo de elemento' />
+                            <SelectReact 
+                                placeholder='Tipo de elemento' 
+                                styles={ getStyle }
+                            />
                         </Col>
                     </Row>
-                </Link>
-                <Link to="#" className="dropdown-item">
+                </span>
+                <span className={classNameMenu}>
                     <Row>
-                        <Col className='p-2'>
+                        <Col>
                             Subsistema
                         </Col>
                         <Col>
                             <SelectReact placeholder='Subsistema' />
                         </Col>
                     </Row>
-                </Link>
+                </span>
             </ListGroup>
             </Dropdown.Menu>
         </Dropdown>

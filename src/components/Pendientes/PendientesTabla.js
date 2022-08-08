@@ -3,47 +3,55 @@ import React, { useEffect, useState } from 'react';
 import { Button, Card, Table } from 'react-bootstrap';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { elementoSetActive, elementoStartLoading } from '../../actions/elementos';
-import { tipoStartLoading } from '../../actions';
+import {  pendienteSetActive, 
+          pendienteStartLoading, 
+          sistemaStartLoading, 
+          subsistemaStartLoading, 
+          elementoStartLoading, 
+          usuariosStartLoading } from '../../actions';
 
-import { ElementosTablaItem } from './ElementosTablaItem';
+import { PendientesTablaItem } from './PendientesTablaItem';
 import { CardFiltro } from '../Widgets/Dinamico/CardFiltro';
 
-const ElementosTabla = () => {
+import moment from 'moment';
+moment.locale('es');
+
+const PendientesTabla = () => {
 
     const dispatch = useDispatch();
 
-    const { elementos, activeElemento } = useSelector( state => state.elemento );
+    const { pendientes, activePendiente } = useSelector( state => state.pendiente );
     const { uid, proyecto } = useSelector( state => state.auth );
 
-    const elementoNuevo = { 
-        nuevo: true,
-        tag: '',
-        nombre: '',
-        pid: '',
-        testpack: '',
-        observaciones: '',
-        tipo: {
-          _id: '',
-          nombre: '',
-          especialidad: ''
-        },
+    const pendienteNuevo = { 
+      nuevo: true,
+      nombre: '', 
+      categoria: '',
+      elemento: {
         subsistema: {
-          _id: '',
-          nombre: '',
           sistema: {
-            _id: '',
-            nombre: ''
+            proyecto: {
+            }
           }
-        },
-        sistema: '',
-        uid: uid,
-        proyecto: proyecto,
-        ...activeElemento
+        }
+      },
+      detectadoPor: {
+        _id: uid,
+        nombre: ''
+      },
+      responsable: '',
+      fechaInicio: moment().toISOString(),  
+      fechaFinEstimado: moment().add({days: 1}).toISOString(),   
+      fechaFin: '',
+      finPor: '',
+      tipoAccion: '', 
+      observaciones: '', 
+      proyecto: proyecto,
+      ...activePendiente
     }
 
     const datosTabla = {
-      tabla: 'Elementos',
+      tabla: 'Pendientes',
       campos: ['Especialidad', 'Tipo', 'Subsistema']
     }
 
@@ -53,9 +61,7 @@ const ElementosTabla = () => {
     const limite = 20;
 
     const handleFiltroVisible = () => {
-      console.log('hoja');
       setFiltroVisible(!filtroVisible);
-      console.log(filtroVisible);
     }
 
     const handleInputChangeBuscar = ({ target }) => {
@@ -71,18 +77,21 @@ const ElementosTabla = () => {
     }
 
     const handleNuevo = () => {
-        dispatch( elementoSetActive(elementoNuevo));
+        dispatch( pendienteSetActive(pendienteNuevo));
     }
 
     useEffect(() => {
-        dispatch( elementoStartLoading( buscar, desde, limite ) );
-        dispatch( tipoStartLoading( '', 0, 200 ) );
-    }, [ dispatch, buscar, desde, limite ])
+      // dispatch( sistemaStartLoading());
+      // dispatch( subsistemaStartLoading() );
+      // dispatch( elementoStartLoading() );
+      // dispatch( usuariosStartLoading() );
+      dispatch( pendienteStartLoading() );
+    }, [ dispatch ])
 
     return (
     <React.Fragment>
       <Card.Header>
-        <Card.Title as="h5">Listado de elementos</Card.Title>
+        <Card.Title as="h5">Listado de pendientes</Card.Title>
         { true ? 
         <span className="d-block m-t-5">
           ESPECIALIDAD: <code>(MECANICA, ELECTRICIDAD)</code> TIPO DE ELEMENTO <code>(BOMBA DE PRESIÓN, VÁLVULA)</code>
@@ -108,7 +117,6 @@ const ElementosTabla = () => {
               </button>
             </div>
             <div className="input-group-append p-2">
-              {/* <IcoFiltro /> */}
               <Button onClick={ handleFiltroVisible }>Collapse Button</Button>
             </div>
           </div>
@@ -119,18 +127,18 @@ const ElementosTabla = () => {
           <thead>
               <tr>
                   <th scope="col" />
-                  <th scope="col">TAG</th>
+                  <th scope="col">Código</th>
                   <th scope="col">Nombre</th>
-                  <th scope="col">PID</th>
-                  <th scope="col">Testpack</th>
-                  <th scope="col">Subsistema</th>
-                  <th scope="col">Tipo</th>
-                  <th scope="col">Especialidad</th>
+                  <th scope="col">Categoría</th>
+                  <th scope="col">TAG</th>
+                  <th scope="col">Detectado Por</th>
+                  <th scope="col">Fecha de Inicio</th>
+                  <th scope="col">Fecha de Fin Estimado</th>
               </tr>
           </thead>
           <tbody>
               {
-                  elementos.sort((o1, o2) => {
+                  pendientes.sort((o1, o2) => {
                     if ( o1.codigo < o2.codigo ){
                       return -1;
                     } else if ( o1.codigo > o2.codigo ) {
@@ -138,10 +146,10 @@ const ElementosTabla = () => {
                     } else {
                       return 0;
                     }
-                  }).map( elementos => (
-                      <ElementosTablaItem
-                          key={ elementos.id }
-                          { ...elementos }
+                  }).map( pendientes => (
+                      <PendientesTablaItem
+                          key={ pendientes.id }
+                          { ...pendientes }
                       />
                   ))
               }
@@ -152,4 +160,4 @@ const ElementosTabla = () => {
   );
 };
 
-export default ElementosTabla;
+export default PendientesTabla;

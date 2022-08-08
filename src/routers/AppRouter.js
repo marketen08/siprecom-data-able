@@ -23,8 +23,9 @@ import SamplePageMg from '../views/extra/SamplePageMg';
 
 
 import AdminLayout from '../layouts/AdminLayout';
-import ElementosTabla from '../components/Elementos/ElementosTabla';
 import BasicButton from '../views/ui-elements/basic/BasicButton';
+import ElementosScreen from '../components/Elementos/ElementosScreen';
+import PendientesScreen from '../components/Pendientes/PendientesScreen';
 
 export const AppRouter = () => {
 
@@ -95,7 +96,16 @@ export const AppRouter = () => {
                     <Route path="/elementos" element={ 
                         <PrivateRoute isAuthenticated= { !!uid }>
                             <AdminLayout>
-                                <ElementosTabla />
+                                <ElementosScreen />
+                            </AdminLayout>
+                        </PrivateRoute>
+                        } 
+                    />
+
+                    <Route path="/pendientes" element={ 
+                        <PrivateRoute isAuthenticated= { !!uid }>
+                            <AdminLayout>
+                                <PendientesScreen />
                             </AdminLayout>
                         </PrivateRoute>
                         } 
